@@ -1,4 +1,4 @@
-QT       += core gui
+QT       += core gui charts
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -10,11 +10,13 @@ CONFIG += c++17
 
 SOURCES += \
     cpu_info.cpp \
+    cpu_usage_graph.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
     cpu_info.hpp \
+    cpu_usage_graph.hpp \
     mainwindow.hpp
 
 FORMS += \

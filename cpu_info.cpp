@@ -27,3 +27,7 @@ void CpuInfo::loadCpuName() {
 QString CpuInfo::getCpuName() const {
     return cpuName;
 }
+
+double CpuInfo::getCpuUsage() const {
+    return 50.0;
+}

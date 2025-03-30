@@ -63,79 +63,153 @@
      <number>1</number>
     </property>
     <widget class="QWidget" name="pageMemory">
-     <widget class="QLabel" name="pageMemoryTitle">
+     <widget class="QWidget" name="horizontalLayoutWidget_2">
       <property name="geometry">
        <rect>
         <x>10</x>
         <y>20</y>
-        <width>101</width>
-        <height>31</height>
+        <width>601</width>
+        <height>41</height>
        </rect>
       </property>
-      <property name="font">
-       <font>
-        <pointsize>20</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>Memory</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="availableMemory">
-      <property name="geometry">
-       <rect>
-        <x>170</x>
-        <y>20</y>
-        <width>441</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>13</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
+      <layout class="QHBoxLayout" name="topBarMamoryLayout">
+       <item>
+        <widget class="QLabel" name="pageMemoryTitle">
+         <property name="font">
+          <font>
+           <pointsize>20</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Memory</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="availableMemory">
+         <property name="font">
+          <font>
+           <pointsize>13</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignmentFlag::AlignBottom|Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing</set>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
     </widget>
     <widget class="QWidget" name="pageCpu">
-     <widget class="QLabel" name="pageCpuTitle">
+     <widget class="QWidget" name="horizontalLayoutWidget">
       <property name="geometry">
        <rect>
         <x>10</x>
         <y>20</y>
-        <width>101</width>
-        <height>31</height>
+        <width>601</width>
+        <height>41</height>
        </rect>
       </property>
-      <property name="font">
-       <font>
-        <pointsize>20</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>CPU</string>
-      </property>
+      <layout class="QHBoxLayout" name="topBarCpuLayout">
+       <item>
+        <widget class="QLabel" name="pageCpuTitle">
+         <property name="font">
+          <font>
+           <pointsize>20</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>CPU</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="cpuName">
+         <property name="font">
+          <font>
+           <pointsize>13</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignmentFlag::AlignBottom|Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing</set>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
-     <widget class="QLabel" name="cpuName">
+     <widget class="QChartView" name="cpuUsageGraph" native="true">
       <property name="geometry">
        <rect>
-        <x>170</x>
-        <y>20</y>
-        <width>441</width>
-        <height>31</height>
+        <x>10</x>
+        <y>80</y>
+        <width>601</width>
+        <height>311</height>
        </rect>
       </property>
-      <property name="font">
-       <font>
-        <pointsize>13</pointsize>
-       </font>
+     </widget>
+     <widget class="QWidget" name="horizontalLayoutWidget_3">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>60</y>
+        <width>601</width>
+        <height>18</height>
+       </rect>
       </property>
-      <property name="text">
-       <string/>
+      <layout class="QHBoxLayout" name="cpuTopLegenda">
+       <item>
+        <widget class="QLabel" name="cpuUtilizationLabel">
+         <property name="text">
+          <string>% Utilization</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="cpuMaximumPercentageUtilizationLabel">
+         <property name="text">
+          <string>100%</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="horizontalLayoutWidget_4">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>390</y>
+        <width>601</width>
+        <height>18</height>
+       </rect>
       </property>
+      <layout class="QHBoxLayout" name="cpuBottomLegenda">
+       <item>
+        <widget class="QLabel" name="cpuHorizontalAxisSecondsLabel">
+         <property name="text">
+          <string>60 seconds</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="cpuMinimumPercentageUtilizationLabel">
+         <property name="text">
+          <string>0</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
     </widget>
    </widget>
@@ -152,6 +226,14 @@
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QChartView</class>
+   <extends>QWidget</extends>
+   <header location="global">QtCharts/QChartView</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

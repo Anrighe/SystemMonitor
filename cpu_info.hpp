@@ -8,6 +8,7 @@ class CpuInfo {
 public:
     CpuInfo();
     QString getCpuName() const;
+    double getCpuUsage() const;
 
 private:
     QString cpuName;
