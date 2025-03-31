@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>796</width>
+    <height>686</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,7 +20,7 @@
       <x>0</x>
       <y>0</y>
       <width>181</width>
-      <height>581</height>
+      <height>661</height>
      </rect>
     </property>
     <widget class="QPushButton" name="btnCpu">
@@ -56,7 +56,7 @@
       <x>180</x>
       <y>0</y>
       <width>621</width>
-      <height>581</height>
+      <height>661</height>
      </rect>
     </property>
     <property name="currentIndex">
@@ -116,18 +116,36 @@
       <layout class="QHBoxLayout" name="topBarCpuLayout">
        <item>
         <widget class="QLabel" name="pageCpuTitle">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="font">
           <font>
            <pointsize>20</pointsize>
           </font>
          </property>
+         <property name="layoutDirection">
+          <enum>Qt::LayoutDirection::LeftToRight</enum>
+         </property>
          <property name="text">
           <string>CPU</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QLabel" name="cpuName">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="font">
           <font>
            <pointsize>13</pointsize>
@@ -147,10 +165,31 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>80</y>
+        <y>77</y>
         <width>601</width>
-        <height>311</height>
+        <height>361</height>
        </rect>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="sizeIncrement">
+       <size>
+        <width>0</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="baseSize">
+       <size>
+        <width>0</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
       </property>
      </widget>
      <widget class="QWidget" name="horizontalLayoutWidget_3">
@@ -186,7 +225,7 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>390</y>
+        <y>440</y>
         <width>601</width>
         <height>18</height>
        </rect>
@@ -211,6 +250,17 @@
        </item>
       </layout>
      </widget>
+     <widget class="QWidget" name="horizontalLayoutWidget_5">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>460</y>
+        <width>601</width>
+        <height>181</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="cpuBottomInformationLayout"/>
+     </widget>
     </widget>
    </widget>
   </widget>
@@ -219,7 +269,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>796</width>
      <height>21</height>
     </rect>
    </property>

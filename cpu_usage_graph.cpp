@@ -16,6 +16,11 @@ CpuUsageGraph::CpuUsageGraph(QWidget *parent) : QChartView(parent) {
     // Hide the legend
     chart->legend()->setVisible(false);
 
+    // Remove margins and background from the chart view
+    setContentsMargins(0, 0, 0, 0);
+    chart->setMargins(QMargins(0, 0, 0, 0));
+    chart->setBackgroundVisible(false);
+
     // Create and configure Y-axis (percentage)
     QValueAxis *axisY = new QValueAxis();
     axisY->setRange(0, 100); // Set range from 0 to 100%
@@ -45,11 +50,12 @@ CpuUsageGraph::CpuUsageGraph(QWidget *parent) : QChartView(parent) {
     axisX->setLabelsVisible(false);  // Hide X-axis labels
     axisY->setLabelsVisible(false);  // Hide Y-axis labels
 
-    // Create the series
+    // Create the test series
     series = new QLineSeries();
-    series->append(0, 2);  // Sample data
-    series->append(2, 5);  // Sample data
-    series->append(23, 55);  // Sample data
+    series->append(99, 99);  // Sample data
+    series->append(89, 78);  // Sample data
+    series->append(15, 45);  // Sample data
+    series->append(0, 0);  // Sample data
     chart->addSeries(series);
 
     // Attach axes to the series

@@ -13,7 +13,7 @@ void CpuInfo::loadCpuName() {
 
     if (RegOpenKeyExA(HKEY_LOCAL_MACHINE, "HARDWARE\\DESCRIPTION\\System\\CentralProcessor\\0", 0, KEY_READ, &hKey) == ERROR_SUCCESS) {
         if (RegQueryValueExA(hKey, "ProcessorNameString", nullptr, nullptr, (LPBYTE)&value, &size) == ERROR_SUCCESS) {
-            cpuName = QString::fromLocal8Bit(value);
+            cpuName = QString::fromLocal8Bit(value).trimmed();;
         } else {
             cpuName = "Unknown CPU";
         }
