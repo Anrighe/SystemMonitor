@@ -20,10 +20,10 @@ CpuUsageTracker& CpuUsageTracker::getInstance(CpuUsageGraph *cpuUsageGraph) {
 /**
  * @return the cpuUsageHistory deque which saves all the measuring data of the cpu usage
  */
-std::deque<double> CpuUsageTracker::getCpuUsageHistory() {
+/*std::deque<double> CpuUsageTracker::getCpuUsageHistory() {
     std::lock_guard<std::mutex> lock(dataMutex);
     return cpuUsageHistory;
-}
+}*/
 
 
 ULONGLONG CpuUsageTracker::ToUInt64(const FILETIME& ft) {
@@ -63,15 +63,12 @@ double CpuUsageTracker::getCurrentCpuUsage() {
         return (totalDiff == 0) ? 0.0 : 100.0 * ((double)systemDiff / (double)totalDiff);
     }
 
-    qDebug()<<"Failed to get system times!";
     return 0.0;
 }
 
 void CpuUsageTracker::updateReading() {
     double cpuUsage = getCurrentCpuUsage();
 
-    debug++;
-    qDebug() << "Debug: " << debug << "\n";
     if (graph) {
         graph->updateChart(cpuUsage);
     }

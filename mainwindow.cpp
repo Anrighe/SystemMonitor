@@ -1,13 +1,8 @@
 #include "mainwindow.hpp"
-#include "ui_mainwindow.h"
-#include "cpu_usage_graph.hpp"
-#include "cpu_usage_tracker.hpp"
-#include <iostream>
 
 
 MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWindow) {
     CpuInfo cpuInfo;
-
 
     ui->setupUi(this);
 
@@ -23,16 +18,10 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
     ui->cpuName->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
 
     CpuUsageGraph *cpuGraph = new CpuUsageGraph(ui->cpuUsageGraph);
-
     cpuGraph->resize(ui->cpuUsageGraph->size());
 
     CpuUsageTracker& cpuUsageTracker = CpuUsageTracker::getInstance(cpuGraph);
-
     cpuUsageTracker.startReadingThread();
-
-
-
-
 }
 
 MainWindow::~MainWindow() {

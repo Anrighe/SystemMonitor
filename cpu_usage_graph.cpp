@@ -45,10 +45,9 @@ CpuUsageGraph::CpuUsageGraph(QWidget *parent) : QChartView(parent) {
     axisX->setLinePen(QPen(Qt::darkGray)); // Set grid line color to light gray
     axisX->setMinorGridLinePen(QPen(Qt::darkGray)); // Set minor grid line color
 
-
     // Create the test series
     series = new QLineSeries();
-    series->clear();
+    updateChart(0.0);
     chart->addSeries(series);
 
     // Attach axes to the series
@@ -57,7 +56,6 @@ CpuUsageGraph::CpuUsageGraph(QWidget *parent) : QChartView(parent) {
 
     // Make sure the chart view expands to the full size of the widget
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);  // Expand in both directions
-    //setAlignment(Qt::AlignCenter);  // Center the chart within the widget
 
     // Set the chart to the chart view
     setChart(chart);
@@ -66,11 +64,11 @@ CpuUsageGraph::CpuUsageGraph(QWidget *parent) : QChartView(parent) {
 
 void CpuUsageGraph::updateChart(double cpuUsage) {
     // Updates the series with the new point
-    series->append(x++, cpuUsage);
+    series->append(graphXAxisInsertElementIndex++, cpuUsage);
 
     if (series->count() > 60) {
         series->remove(0);  // Remove the first (oldest) point
     }
 
-    axisX->setRange(x - 60, x);
+    axisX->setRange(graphXAxisInsertElementIndex - 60, graphXAxisInsertElementIndex);
 }

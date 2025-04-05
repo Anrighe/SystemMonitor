@@ -4,6 +4,9 @@
 #include <QMainWindow>
 
 #include "cpu_info.hpp"
+#include "ui_mainwindow.h"
+#include "cpu_usage_graph.hpp"
+#include "cpu_usage_tracker.hpp"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {

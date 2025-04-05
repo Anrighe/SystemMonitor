@@ -19,7 +19,6 @@ public:
 
     static CpuUsageTracker& getInstance(CpuUsageGraph *cpuUsageGraph);
 
-    std::deque<double> getCpuUsageHistory();
     void updateReading();
 
     ULONGLONG ToUInt64(const FILETIME& ft);
@@ -38,12 +37,9 @@ private:
 
     double getCurrentCpuUsage();
 
-    std::deque<double> cpuUsageHistory;
     std::mutex dataMutex;
 
     std::thread readingThread;
     std::atomic<bool> stopThreadFlag;
-
-    std::atomic<int> debug;
 };
 #endif // CPU_USAGE_TRACKER_HPP
