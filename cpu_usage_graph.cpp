@@ -5,7 +5,6 @@ CpuUsageGraph::CpuUsageGraph(QWidget *parent) : QChartView(parent) {
 
     // Create the chart object
     chart = new QChart();
-    chart->createDefaultAxes();
 
     // Set background color
     QColor backgroundColor = parent ? parent->palette().color(QPalette::Window) : QPalette::ColorRole::Dark;
@@ -31,6 +30,10 @@ CpuUsageGraph::CpuUsageGraph(QWidget *parent) : QChartView(parent) {
     axisY->setLinePen(QPen(Qt::darkGray)); // Set grid line color to light gray
     axisY->setMinorGridLinePen(QPen(Qt::darkGray)); // Set minor grid line color
 
+    // Remove axis labels by setting the labels to an empty list
+    axisX->setLabelsVisible(false);  // Hide X-axis labels
+    axisY->setLabelsVisible(false);  // Hide Y-axis labels
+
     // Create and configure X-axis
     axisX->setRange(0, 60); // Set the range for the X-axis
     chart->addAxis(axisX, Qt::AlignBottom); // Add the X-axis to the bottom
@@ -42,13 +45,10 @@ CpuUsageGraph::CpuUsageGraph(QWidget *parent) : QChartView(parent) {
     axisX->setLinePen(QPen(Qt::darkGray)); // Set grid line color to light gray
     axisX->setMinorGridLinePen(QPen(Qt::darkGray)); // Set minor grid line color
 
-    // Remove axis labels by setting the labels to an empty list
-    axisX->setLabelsVisible(false);  // Hide X-axis labels
-    axisY->setLabelsVisible(false);  // Hide Y-axis labels
 
     // Create the test series
     series = new QLineSeries();
-
+    series->clear();
     chart->addSeries(series);
 
     // Attach axes to the series
@@ -57,7 +57,7 @@ CpuUsageGraph::CpuUsageGraph(QWidget *parent) : QChartView(parent) {
 
     // Make sure the chart view expands to the full size of the widget
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);  // Expand in both directions
-    setAlignment(Qt::AlignCenter);  // Center the chart within the widget
+    //setAlignment(Qt::AlignCenter);  // Center the chart within the widget
 
     // Set the chart to the chart view
     setChart(chart);
@@ -65,8 +65,7 @@ CpuUsageGraph::CpuUsageGraph(QWidget *parent) : QChartView(parent) {
 }
 
 void CpuUsageGraph::updateChart(double cpuUsage) {
-    // Update the series with new data points, for example:
-    static int x = 0;
+    // Updates the series with the new point
     series->append(x++, cpuUsage);
 
     if (series->count() > 60) {

@@ -25,7 +25,6 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
     CpuUsageGraph *cpuGraph = new CpuUsageGraph(ui->cpuUsageGraph);
 
     cpuGraph->resize(ui->cpuUsageGraph->size());
-    cpuGraph->updateChart(cpuInfo.getCpuUsage());
 
     CpuUsageTracker& cpuUsageTracker = CpuUsageTracker::getInstance(cpuGraph);
 
@@ -37,5 +36,6 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
 }
 
 MainWindow::~MainWindow() {
+    delete ui->cpuUsageGraph;
     delete ui;
 }

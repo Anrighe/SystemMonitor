@@ -19,7 +19,6 @@ public:
 
     static CpuUsageTracker& getInstance(CpuUsageGraph *cpuUsageGraph);
 
-    void addCpuUsage(double usage);
     std::deque<double> getCpuUsageHistory();
     void updateReading();
 
@@ -44,5 +43,7 @@ private:
 
     std::thread readingThread;
     std::atomic<bool> stopThreadFlag;
+
+    std::atomic<int> debug;
 };
 #endif // CPU_USAGE_TRACKER_HPP

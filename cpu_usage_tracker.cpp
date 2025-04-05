@@ -18,21 +18,6 @@ CpuUsageTracker& CpuUsageTracker::getInstance(CpuUsageGraph *cpuUsageGraph) {
 }
 
 /**
- * @brief Adds the measuring data to the deque data strucuture, ensuring only 60 samples are memorized
- * @param usage The cpu usage percentage to memorize
- */
-void CpuUsageTracker::addCpuUsage(double usage) {
-    std::lock_guard<std::mutex> lock(dataMutex);
-
-    // Keeps only the last 60 values
-    if (cpuUsageHistory.size() >= 60) {
-        cpuUsageHistory.push_back(usage);
-    }
-
-    cpuUsageHistory.pop_front();
-}
-
-/**
  * @return the cpuUsageHistory deque which saves all the measuring data of the cpu usage
  */
 std::deque<double> CpuUsageTracker::getCpuUsageHistory() {
@@ -78,14 +63,15 @@ double CpuUsageTracker::getCurrentCpuUsage() {
         return (totalDiff == 0) ? 0.0 : 100.0 * ((double)systemDiff / (double)totalDiff);
     }
 
+    qDebug()<<"Failed to get system times!";
     return 0.0;
 }
 
 void CpuUsageTracker::updateReading() {
-    //CpuUsageTracker::addCpuUsage(CpuUsageTracker::getCurrentCpuUsage());
-
     double cpuUsage = getCurrentCpuUsage();
-    addCpuUsage(cpuUsage);
+
+    debug++;
+    qDebug() << "Debug: " << debug << "\n";
     if (graph) {
         graph->updateChart(cpuUsage);
     }
@@ -97,7 +83,7 @@ void CpuUsageTracker::startReadingThread() {
     readingThread = std::thread([this]() {
         while (!stopThreadFlag) {
             CpuUsageTracker::updateReading();
-            std::this_thread::sleep_for(std::chrono::seconds(1));
+            std::this_thread::sleep_for(std::chrono::milliseconds(1000));
         }
     });
 }

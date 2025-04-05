@@ -20,6 +20,8 @@ private:
 
     QValueAxis *axisX = new QValueAxis();
     QValueAxis *axisY = new QValueAxis();
+
+    std::atomic<int> x;
 };
 
 #endif // CPUUSAGEGRAPH_HPP
