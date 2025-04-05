@@ -1,7 +1,5 @@
 #include "cpu_usage_graph.hpp"
-#include <QtCharts/QChart>
-#include <QtCharts/QLineSeries>
-#include <QtCharts/QValueAxis>
+
 
 CpuUsageGraph::CpuUsageGraph(QWidget *parent) : QChartView(parent) {
 
@@ -22,7 +20,6 @@ CpuUsageGraph::CpuUsageGraph(QWidget *parent) : QChartView(parent) {
     chart->setBackgroundVisible(false);
 
     // Create and configure Y-axis (percentage)
-    QValueAxis *axisY = new QValueAxis();
     axisY->setRange(0, 100); // Set range from 0 to 100%
     axisY->setLabelFormat("%1%"); // Label format to display percentage
     chart->addAxis(axisY, Qt::AlignLeft); // Add the Y-axis to the left
@@ -35,7 +32,6 @@ CpuUsageGraph::CpuUsageGraph(QWidget *parent) : QChartView(parent) {
     axisY->setMinorGridLinePen(QPen(Qt::darkGray)); // Set minor grid line color
 
     // Create and configure X-axis
-    QValueAxis *axisX = new QValueAxis();
     axisX->setRange(0, 60); // Set the range for the X-axis
     chart->addAxis(axisX, Qt::AlignBottom); // Add the X-axis to the bottom
 
@@ -52,10 +48,7 @@ CpuUsageGraph::CpuUsageGraph(QWidget *parent) : QChartView(parent) {
 
     // Create the test series
     series = new QLineSeries();
-    series->append(99, 99);  // Sample data
-    series->append(89, 78);  // Sample data
-    series->append(15, 45);  // Sample data
-    series->append(0, 0);  // Sample data
+
     chart->addSeries(series);
 
     // Attach axes to the series
@@ -75,4 +68,10 @@ void CpuUsageGraph::updateChart(double cpuUsage) {
     // Update the series with new data points, for example:
     static int x = 0;
     series->append(x++, cpuUsage);
+
+    if (series->count() > 60) {
+        series->remove(0);  // Remove the first (oldest) point
+    }
+
+    axisX->setRange(x - 60, x);
 }

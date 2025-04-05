@@ -3,6 +3,9 @@
 
 #include <QtCharts/QChartView>
 #include <QtCharts/QLineSeries>
+#include <QtCharts/QChart>
+#include <QtCharts/QValueAxis>
+
 
 class CpuUsageGraph : public QChartView {
     Q_OBJECT
@@ -14,6 +17,9 @@ public:
 private:
     QLineSeries *series;
     QChart *chart;
+
+    QValueAxis *axisX = new QValueAxis();
+    QValueAxis *axisY = new QValueAxis();
 };
 
 #endif // CPUUSAGEGRAPH_HPP

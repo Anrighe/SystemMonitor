@@ -1,6 +1,9 @@
 #include "mainwindow.hpp"
 #include "ui_mainwindow.h"
 #include "cpu_usage_graph.hpp"
+#include "cpu_usage_tracker.hpp"
+#include <iostream>
+
 
 MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWindow) {
     CpuInfo cpuInfo;
@@ -23,6 +26,14 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
 
     cpuGraph->resize(ui->cpuUsageGraph->size());
     cpuGraph->updateChart(cpuInfo.getCpuUsage());
+
+    CpuUsageTracker& cpuUsageTracker = CpuUsageTracker::getInstance(cpuGraph);
+
+    cpuUsageTracker.startReadingThread();
+
+
+
+
 }
 
 MainWindow::~MainWindow() {

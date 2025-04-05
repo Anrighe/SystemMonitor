@@ -11,12 +11,14 @@ CONFIG += c++17
 SOURCES += \
     cpu_info.cpp \
     cpu_usage_graph.cpp \
+    cpu_usage_tracker.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
     cpu_info.hpp \
     cpu_usage_graph.hpp \
+    cpu_usage_tracker.hpp \
     mainwindow.hpp
 
 FORMS += \
